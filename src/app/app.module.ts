@@ -5,27 +5,22 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
-import { GithubService } from './services/github.service';
+import { BodyComponent } from './shared/body/body.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    BodyComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { 
-
-  constructor(private github: GithubService){}
-
-  ngOnInit(): void {
-    this.github.fetchNumberOfOrganizations().subscribe(arg => this.property = arg);
-    
-  }
-}
+export class AppModule { }
