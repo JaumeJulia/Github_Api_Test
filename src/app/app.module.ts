@@ -7,13 +7,15 @@ import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { BodyComponent } from './shared/body/body.component';
 import { HttpClientModule } from '@angular/common/http';
+import { BackgroundComponent } from './components/background/background.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    BodyComponent
+    BodyComponent,
+    BackgroundComponent
   ],
   imports: [
     BrowserModule,
