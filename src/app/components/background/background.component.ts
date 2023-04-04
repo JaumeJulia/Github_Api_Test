@@ -5,6 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './background.component.html',
   styleUrls: ['./background.component.css']
 })
-export class BackgroundComponent {
-  //backgroundImageURL = "../../assets/images/trifork1400x875.jpg";
-}
+export class BackgroundComponent { }

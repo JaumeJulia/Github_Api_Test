@@ -27,16 +27,17 @@ export class BodyComponent {
     }); 
   }
 
-  getNumberOfRepositories() {
+  getNumberOfRepositories(organization: string) {
     var numberOfRepositories;
-    this.github.fetchRepositoriesFromOrganization("patata").subscribe((response:any) => {
+    this.github.fetchRepositoriesFromOrganization(organization).subscribe((response:any) => {
       numberOfRepositories = response.length;
     });
   }
 
-  getBiggestRepository() {
-    this.github.fetchRepositoriesFromOrganization("patata").subscribe((response:any) => {
-      
+  getBiggestRepository(organization: string) {
+    this.github.fetchRepositoriesFromOrganization(organization).subscribe((response:any) => {
+      //we need to iterate over the repositories, looking for the biggest one. We save the first one we find, and then we continue iterating.
+      //Once we find a repository, we compare if it's bigger than the one we saved. If it's bigger, we save the new one and repeat the process.
     });
   }
   }

@@ -18,7 +18,7 @@ export class GithubService {
   }
 
   fetchNumberOfOrganizations(){
-    var aux = "https://api.github.com/organizations?Accept=application/vnd.github+json&Authorization="+this.GITHUB_TOKEN+"&X-GitHub-Api-Version=2022-11-28&per_page=100";
-    return this.http.get(aux);
+    var link = "https://api.github.com/organizations?Accept=application/vnd.github+json&Authorization="+this.GITHUB_TOKEN+"&X-GitHub-Api-Version=2022-11-28&per_page=100";
+    return this.http.get(link);
   }
 }
