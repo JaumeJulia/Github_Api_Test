@@ -23,10 +23,6 @@ export class BodyComponent {
 
   ngOnInit(): void {
     this.github.fetchNumberOfOrganizations().subscribe((response:any) => {
-      /* const links = response.headers.get('link');
-      if(links.next){
-
-      } */
       this.numberOfOrganizations = response.length;
     }); 
   }
