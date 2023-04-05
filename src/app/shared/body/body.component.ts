@@ -14,11 +14,11 @@ interface Repository{
 export class BodyComponent {
 
   constructor(private github: GithubService){
-    this.biggestRepository = {name: "placeholder", size: 0};
+    this.biggestRepository = {name: "", size: 0};
   }
   
   numberOfOrganizations: any;
-  numberOfRepositories: any = 0;
+  numberOfRepositories: any = -99;
   biggestRepository: Repository;
 
   ngOnInit(): void {
@@ -29,7 +29,6 @@ export class BodyComponent {
 
   getNumberOfRepositories(organization: string) {
     if(typeof organization != 'undefined' && organization){
-      //var numberOfRepositories;
       this.github.fetchRepositoriesFromOrganization(organization).subscribe((response:any) => {
         this.numberOfRepositories = response.length;
       });
@@ -43,7 +42,10 @@ export class BodyComponent {
         var usableResponse = JSON.parse(stringedResponse);
         var propertiesChecked: number = 0;
         var repository: Repository = {name: "placeholder", size: 0};
-        console.log("im in");
+        //we need to iterate over the repositories, looking for the biggest one.
+        // We save the first one we find, and then we continue iterating.
+        //Once we find a repository, we compare if it's bigger than the one we saved.
+        // If it's bigger, we save the new one and repeat the process.
         for(let index in usableResponse){
           for(let prop in usableResponse[index]){
             if(prop === "name"){
@@ -60,8 +62,6 @@ export class BodyComponent {
             }
           }
         } 
-        //we need to iterate over the repositories, looking for the biggest one. We save the first one we find, and then we continue iterating.
-        //Once we find a repository, we compare if it's bigger than the one we saved. If it's bigger, we save the new one and repeat the process.
       });
     }
   }
@@ -71,15 +71,6 @@ export class BodyComponent {
       console.log(repository);
       this.biggestRepository.name = repository.name;
       this.biggestRepository.size = repository.size;
-    }
-  }
-
-  prueba(value: string){
-    if(typeof value != 'undefined' && value){
-      alert(value);
-      return
-    } else {
-      alert("En blanco");
     }
   }
 

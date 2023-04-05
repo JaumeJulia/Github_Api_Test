@@ -1,18 +1,29 @@
 <div class="centerSquare center-text primary-color background-color">
     <h2>How many organizations there are:</h2>
-    <p class="secondary-color">{{numberOfOrganizations | json}}</p>
+    <h4 class="secondary-color">{{numberOfOrganizations | json}}</h4>
     <!-- textbox -->
     <textarea name="" #writtenOrganization cols="40" rows="2" placeholder="Write the name of an existing organization"></textarea>
     <!-- first button -->
-    <div>
-        <button type="button" class="btn btn-light primary-color button-background-color" (click)=" getNumberOfRepositories(writtenOrganization.value) ">
+    <div class="container row">
+        <div class="col-md-6">
+            <button type="button" class="btn btn-light primary-color button-background-color" (click)=" getNumberOfRepositories(writtenOrganization.value) ">
             Number of repositories
         </button>
+        </div>
         <!-- second button -->
-        <button type="button " class="btn btn-light primary-color button-background-color " (click)="getBiggestRepository(writtenOrganization.value)">
+        <div class="col-md-6">
+            <button type="button " class="btn btn-light primary-color button-background-color " (click)="getBiggestRepository(writtenOrganization.value)">
             Biggest repository
         </button>
+        </div>
     </div>
     <!-- result -->
-    <p class="secondary-color">{{numberOfRepositories}}</p>
+    <div class="container row align-middle">
+        <p class="primary-color col-md-6" [hidden]='numberOfRepositories == -99'>Owned repositories: {{numberOfRepositories}}</p>
+        <div class="col-md-6" [hidden]='biggestRepository.name == ""'>
+            <p class="primary-color">Name: {{biggestRepository.name}}</p>
+            <p class="primary-color">Size: {{biggestRepository.size}} bytes</p>
+        </div>
+    </div>
+    <p>Example of an organization: errfree</p>
 </div>
