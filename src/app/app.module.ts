@@ -8,6 +8,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { BodyComponent } from './shared/body/body.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BackgroundComponent } from './components/background/background.component';
+import { StyledButtonComponent } from './components/styled-button/styled-button.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { BackgroundComponent } from './components/background/background.componen
     HeaderComponent,
     FooterComponent,
     BodyComponent,
-    BackgroundComponent
+    BackgroundComponent,
+    StyledButtonComponent
   ],
   imports: [
     BrowserModule,

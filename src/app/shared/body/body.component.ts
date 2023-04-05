@@ -28,16 +28,59 @@ export class BodyComponent {
   }
 
   getNumberOfRepositories(organization: string) {
-    var numberOfRepositories;
-    this.github.fetchRepositoriesFromOrganization(organization).subscribe((response:any) => {
-      numberOfRepositories = response.length;
-    });
+    if(typeof organization != 'undefined' && organization){
+      //var numberOfRepositories;
+      this.github.fetchRepositoriesFromOrganization(organization).subscribe((response:any) => {
+        this.numberOfRepositories = response.length;
+      });
+    }
   }
 
   getBiggestRepository(organization: string) {
-    this.github.fetchRepositoriesFromOrganization(organization).subscribe((response:any) => {
-      //we need to iterate over the repositories, looking for the biggest one. We save the first one we find, and then we continue iterating.
-      //Once we find a repository, we compare if it's bigger than the one we saved. If it's bigger, we save the new one and repeat the process.
-    });
+    if(typeof organization != 'undefined' && organization){
+      this.github.fetchRepositoriesFromOrganization(organization).subscribe((response: any) => {
+        var stringedResponse = JSON.stringify(response);
+        var usableResponse = JSON.parse(stringedResponse);
+        var propertiesChecked: number = 0;
+        var repository: Repository = {name: "placeholder", size: 0};
+        console.log("im in");
+        for(let index in usableResponse){
+          for(let prop in usableResponse[index]){
+            if(prop === "name"){
+              repository.name = usableResponse[index][prop];
+              propertiesChecked++;
+            } else if(prop === "size"){
+              repository.size = usableResponse[index][prop];
+              propertiesChecked++;
+            }
+            if(propertiesChecked === 2){
+              propertiesChecked = 0;
+              this.setBiggestRepository(repository);
+              break;
+            }
+          }
+        } 
+        //we need to iterate over the repositories, looking for the biggest one. We save the first one we find, and then we continue iterating.
+        //Once we find a repository, we compare if it's bigger than the one we saved. If it's bigger, we save the new one and repeat the process.
+      });
+    }
   }
+
+  setBiggestRepository(repository: Repository){
+    if(repository.size >= this.biggestRepository.size){
+      console.log(repository);
+      this.biggestRepository.name = repository.name;
+      this.biggestRepository.size = repository.size;
+    }
   }
+
+  prueba(value: string){
+    if(typeof value != 'undefined' && value){
+      alert(value);
+      return
+    } else {
+      alert("En blanco");
+    }
+  }
+
+}

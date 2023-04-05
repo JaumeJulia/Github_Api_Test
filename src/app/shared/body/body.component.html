@@ -1,8 +1,18 @@
-<div class="centerSquare center-text">
+<div class="centerSquare center-text primary-color background-color">
     <h2>How many organizations there are:</h2>
-    <p>{{numberOfOrganizations | json}}</p>
-
+    <p class="secondary-color">{{numberOfOrganizations | json}}</p>
     <!-- textbox -->
-    <!-- first button --> <!-- second button -->
+    <textarea name="" #writtenOrganization cols="40" rows="2" placeholder="Write the name of an existing organization"></textarea>
+    <!-- first button -->
+    <div>
+        <button type="button" class="btn btn-light primary-color button-background-color" (click)=" getNumberOfRepositories(writtenOrganization.value) ">
+            Number of repositories
+        </button>
+        <!-- second button -->
+        <button type="button " class="btn btn-light primary-color button-background-color " (click)="getBiggestRepository(writtenOrganization.value)">
+            Biggest repository
+        </button>
+    </div>
     <!-- result -->
+    <p class="secondary-color">{{numberOfRepositories}}</p>
 </div>
