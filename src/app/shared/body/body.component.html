@@ -1,4 +1,4 @@
-<div class="centerSquare center-text primary-color background-color">
+<div class="centerSquare center center-text primary-color background-color">
     <h2>How many organizations there are:</h2>
     <h4 class="secondary-color">{{numberOfOrganizations | json}}</h4>
     <!-- textbox -->
@@ -19,10 +19,14 @@
     </div>
     <!-- result -->
     <div class="container row align-middle">
-        <p class="primary-color col-md-6" [hidden]='numberOfRepositories == -99'>Owned repositories: {{numberOfRepositories}}</p>
-        <div class="col-md-6" [hidden]='biggestRepository.name == ""'>
-            <p class="primary-color">Name: {{biggestRepository.name}}</p>
-            <p class="primary-color">Size: {{biggestRepository.size}} bytes</p>
+        <div class="col-md-6">
+            <p class="primary-color" [hidden]='numberOfRepositories == -99'>Owned repositories: {{numberOfRepositories}}</p>
+        </div>
+        <div class="col-md-6">
+            <div class="" [hidden]='biggestRepository.name == ""'>
+                <p class="primary-color">Name: {{biggestRepository.name}}</p>
+                <p class="primary-color">Size: {{biggestRepository.size}} bytes</p>
+            </div>
         </div>
     </div>
     <p>Example of an organization: errfree</p>
