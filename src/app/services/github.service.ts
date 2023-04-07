@@ -36,22 +36,4 @@ export class GithubService {
     });
     return response.data;
   }
-
-  /* async fetchNumberOfOrganizations(){ //This function will end up retrieveing all organizations, but not today at least. 
-    const iterator = this.octokit.paginate.iterator("Get /organizations", {
-      per_page: 100,
-      headers: {
-        "Accept": "application/vnd.github+json",
-        "X-GitHub-Api-Version": "2022-11-28"
-      }
-    })
-    console.log("iterator constructed");
-    var totalNumber = 0; 
-    for await (const { data: id } of iterator) {
-      totalNumber += id.length;
-      console.log(totalNumber);
-    }
-    return totalNumber;
-  } */
-
 }
