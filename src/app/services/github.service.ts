@@ -6,9 +6,7 @@ import { Octokit } from 'octokit';
 })
 export class GithubService {
 
-  private octokit: Octokit = new Octokit({
-    auth: "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"
-  });
+  private octokit: Octokit = new Octokit({  });
 
   constructor() {
     
@@ -32,7 +30,6 @@ export class GithubService {
         "X-GitHub-Api-Version": "2022-11-28"
       }
     });
-    console.log(response);
     return response.data;
   }
 
