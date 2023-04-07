@@ -27,44 +27,46 @@ export class BodyComponent {
 
   async setNumberOfOrganizations(){
     let response = await this.github.fetchNumberOfOrganizations();
-    this.numberOfOrganizations = response.length;
+    this.numberOfOrganizations = response.total_count;
   }
 
   async getNumberOfRepositories(organization: string) {
     if(typeof organization != 'undefined' && organization){ //It checks for "null", "undefined", "" and uninitialized.
       let response = await this.github.fetchRepositoriesFromOrganization(organization);
       this.numberOfRepositories = response.length;
+    } else {
+      alert("Organization not found");
     }
   }
 
   async getBiggestRepository(organization: string) {
     if(typeof organization != 'undefined' && organization){ //It checks for "null", "undefined", "" and uninitialized.
-      var response = await this.github.fetchRepositoriesFromOrganization(organization);
-        var stringedResponse = JSON.stringify(response);
-        var usableResponse = JSON.parse(stringedResponse);
-        var propertiesChecked: number = 0;
-        this.biggestRepository = {name: "placeholder", size: 0};
-        var repository: Repository = {name: "placeholder", size: 0};
-        //we need to iterate over the repositories, looking for the biggest one.
-        // We save the first one we find, and then we continue iterating.
-        //Once we find a repository, we compare if it's bigger than the one we saved.
-        // If it's bigger, we save the new one and repeat the process.
-        for(let index in usableResponse){
-          for(let prop in usableResponse[index]){
-            if(prop === "name"){ 
-              repository.name = usableResponse[index][prop]; 
-              propertiesChecked++;
-            } else if(prop === "size"){
-              repository.size = usableResponse[index][prop];
-              propertiesChecked++;
-            }
-            if(propertiesChecked === 2){
-              propertiesChecked = 0;
-              this.setBiggestRepository(repository);
-              break;
-            }
+      var response:any = await this.github.fetchRepositoriesFromOrganization(organization);
+      var propertiesChecked: number = 0;
+      this.biggestRepository = {name: "placeholder", size: 0};
+      var repository: Repository = {name: "placeholder", size: 0};
+      //we need to iterate over the repositories, looking for the biggest one.
+      // We save the first one we find, and then we continue iterating.
+      //Once we find a repository, we compare if it's bigger than the one we saved.
+      // If it's bigger, we save the new one and repeat the process.
+      for(let entry of response){
+        for(let prop in entry){
+          if(prop === "name"){ 
+            repository.name = entry[prop]; 
+            propertiesChecked++;
+          } else if(prop === "size"){
+            repository.size = entry[prop];
+            propertiesChecked++;
           }
-        } 
+          if(propertiesChecked === 2){
+            propertiesChecked = 0;
+            this.setBiggestRepository(repository);
+            break;
+          }
+        }
+      } 
+    } else {
+      alert("Organization not found");
     }
   }
 

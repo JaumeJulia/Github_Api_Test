@@ -26,6 +26,16 @@ export class GithubService {
   }
 
   async fetchNumberOfOrganizations(){
+    const response = await this.octokit.request("GET /search/users?q=type:org", {
+      headers: {
+        "X-GitHub-Api-Version": "2022-11-28"
+      }
+    });
+    console.log(response);
+    return response.data;
+  }
+
+ /*  async fetchNumberOfOrganizations(){
     const response = await this.octokit.request("GET /organizations", {
       per_page: 100,
       page: 500,
@@ -36,4 +46,5 @@ export class GithubService {
     });
     return response.data;
   }
+} */
 }
