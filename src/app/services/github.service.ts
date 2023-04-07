@@ -7,7 +7,7 @@ import { Octokit } from 'octokit';
 export class GithubService {
 
   private octokit: Octokit = new Octokit({
-    auth: "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"
+    auth: "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"
   });
 
   constructor() {
