@@ -32,17 +32,4 @@ export class GithubService {
     });
     return response.data;
   }
-
- /*  async fetchNumberOfOrganizations(){
-    const response = await this.octokit.request("GET /organizations", {
-      per_page: 100,
-      page: 500,
-      headers: {
-        "Accept": "application/vnd.github+json",
-        "X-GitHub-Api-Version": "2022-11-28"
-      }
-    });
-    return response.data;
-  }
-} */
 }
