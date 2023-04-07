@@ -26,7 +26,8 @@ export class GithubService {
   }
 
   async fetchNumberOfOrganizations(){
-    const response = await this.octokit.request("GET /search/users?q=type:org", {
+    const response = await this.octokit.request("GET /search/users", {
+      q:"type:org",
       headers: {
         "X-GitHub-Api-Version": "2022-11-28"
       }
