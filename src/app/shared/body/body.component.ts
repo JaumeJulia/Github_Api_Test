@@ -72,7 +72,6 @@ export class BodyComponent {
 
   setBiggestRepository(repository: Repository){
     if(repository.size >= this.biggestRepository.size){
-      console.log(repository);
       this.biggestRepository.name = repository.name;
       this.biggestRepository.size = repository.size;
     }
